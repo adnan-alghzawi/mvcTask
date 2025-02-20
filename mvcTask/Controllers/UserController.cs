@@ -61,9 +61,11 @@ namespace mvcTask.Controllers
 
         public IActionResult Profile()
         {
-            ViewBag.name= HttpContext.Session.GetString("name");
+            
+            ViewBag.name = HttpContext.Session.GetString("name");
             ViewBag.email = HttpContext.Session.GetString("email");
-            ViewBag.password = HttpContext.Session.GetString("password");
+            ViewBag.phone = HttpContext.Session.GetString("phone");
+            ViewBag.address = HttpContext.Session.GetString("address");
             return View();
         }
         public IActionResult Logout()
@@ -78,6 +80,26 @@ namespace mvcTask.Controllers
         public IActionResult Admin()
         {
             return View();
+        }
+        public IActionResult EditProfile()
+        {
+            
+            ViewBag.name = HttpContext.Session.GetString("name");
+            ViewBag.email = HttpContext.Session.GetString("email");
+            ViewBag.phone = HttpContext.Session.GetString("phone");
+            ViewBag.address = HttpContext.Session.GetString("address");
+            return View();
+        }
+        [HttpPost]
+        public IActionResult EditProfile(string name, string email, string phone, string address)
+        {
+            HttpContext.Session.SetString("name", name);
+            HttpContext.Session.SetString("email", email);
+            HttpContext.Session.SetString("phone", phone);
+            HttpContext.Session.SetString("address", address);
+
+            return RedirectToAction("Profile"); 
+
         }
 
     }

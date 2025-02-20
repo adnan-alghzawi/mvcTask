@@ -2,15 +2,16 @@
     Layout = "_Layout";
 }
 
-
-
 <div class="card" style="width: 18rem;">
-  <div class="card-header">
+    <div class="card-header">
         <h1>Profile</h1>
-  </div>
-  <ul class="list-group list-group-flush">
-        <li class="list-group-item">Name : @ViewBag.name</li>
-        <li class="list-group-item">Email : @ViewBag.email</li>
-        <li class="list-group-item">Password : @ViewBag.password</li>
-  </ul>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Name: @ViewBag.name</li>
+        <li class="list-group-item">Email: @ViewBag.email</li>
+        <li class="list-group-item">Phone: @ViewBag.phone</li>
+        <li class="list-group-item">Address: @ViewBag.address</li>
+    </ul>
 </div>
+
+<a href="@Url.Action("EditProfile", "User")" class="btn btn-info">Edit Profile</a>
