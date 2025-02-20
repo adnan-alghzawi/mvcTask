@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.Intrinsics.Arm;
 
 namespace mvcTask.Controllers
 {
@@ -32,21 +33,32 @@ namespace mvcTask.Controllers
         {
             return View();
         }
-        public IActionResult HandleLogin(string email, string password)
+        public IActionResult HandleLogin(string email, string password, string remember)
         {
-            string Email = HttpContext.Session.GetString("email");
-            string Password = HttpContext.Session.GetString("password");
-            if(Email==email && Password == password)
+            string storedEmail = HttpContext.Session.GetString("email");
+            string storedPassword = HttpContext.Session.GetString("password");
+            if (storedEmail == email && storedPassword == password)
             {
-                return RedirectToAction("Index","Home");
+                if (remember == "yes")
+                {
+                    CookieOptions options = new CookieOptions();
+                    options.Expires = DateTime.Now.AddDays(30);
+                    Response.Cookies.Append("userEmail", email, options);
+                }
+
+                if (email == "admin@gmail.com" && password == "123")
+                {
+                    return RedirectToAction("Admin", "User");
+                }
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                TempData["ErrorMessage"] = "your password and repeat password don't match";
-                return RedirectToAction("Login","User");
+                TempData["ErrorMessage"] = "Incorrect email or password.";
+                return RedirectToAction("Login", "User");
             }
-            
         }
+
         public IActionResult Profile()
         {
             ViewBag.name= HttpContext.Session.GetString("name");
@@ -54,5 +66,19 @@ namespace mvcTask.Controllers
             ViewBag.password = HttpContext.Session.GetString("password");
             return View();
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            foreach (var cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
     }
 }

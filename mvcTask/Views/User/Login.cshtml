@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/User_Layout.cshtml";
+    Layout = "_Layout";
 }
 
 <section class="vh-100" style="background-color: #eee;">
@@ -15,8 +15,8 @@
 
                                 <form class="mx-1 mx-md-4" method="post" action="/User/HandleLogin">
 
-                                    
-                               
+
+
                                     <p style="color:red; text-align:center;">@TempData["ErrorMessage"]</p>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
@@ -30,11 +30,16 @@
                                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                         <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <input type="password" id="form3Example4c" name="password" class="form-control" />
-                                            <label class="form-label" for="form3Example4c" >Password</label>
+                                            <label class="form-label" for="form3Example4c">Password</label>
                                         </div>
                                     </div>
 
-                                    
+                                    <div class="col d-flex justify-content-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="yes" id="form2Example31" name="remember" />
+                                            <label class="form-check-label" for="form2Example31"> Remember me </label>
+                                        </div>
+                                    </div>
 
 
 

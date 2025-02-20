@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - mvc2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/mvc2.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+</head>
+
+<body>
+    <header>
+        <div class="sidebar">
+            <h1>Admin Menu</h1>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="@Url.Action("Index", "Home")">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Admin Dashboard | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
