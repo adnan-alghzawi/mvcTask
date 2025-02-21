@@ -83,7 +83,6 @@ namespace mvcTask.Controllers
         }
         public IActionResult EditProfile()
         {
-            
             ViewBag.name = HttpContext.Session.GetString("name");
             ViewBag.email = HttpContext.Session.GetString("email");
             ViewBag.phone = HttpContext.Session.GetString("phone");
